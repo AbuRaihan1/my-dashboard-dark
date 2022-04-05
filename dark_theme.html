@@ -47,6 +47,11 @@
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
       <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
      <!-- link for candlestick chart  -->
+
+         <!-- chart js link -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- chart js link -->
+
   
 
   <!-- candlestrick chart -->
@@ -143,6 +148,7 @@
         title: "Number Of Mentions",
         width: "1000",
         backgroundColor:'#1D1E25',
+        textColor:'white',
         // hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
         vAxis: {
             gridlines: {
@@ -391,7 +397,10 @@
         <div class="col-lg-4 col-md-6 col-12">
           <div class="common_desc donut_desc_dark">
             <h5 class="bitcoin_statement">Bitcoin's sentiment</h5>
-            <div id="donutchart" class="dont donut_desc_dark" style="height: 300px; width: 100%"></div>
+            <div><canvas id="doughnut"  class="dont donut_desc_dark" style="height: 300px; width: 100%"> </canvas></div>
+
+            
+
           </div>
         </div>
 
@@ -1612,6 +1621,72 @@
     
   </script>
 <!-- candlestick chart  -->
+
+<!-- donut chart start -->
+      
+<script>
+  const dataDoughnut = {
+    labels: ["Twitter 23%", "Reddit 6% ", 'Behance 20%',
+      'Dribble 40%', 'Youtube 5%', 'Facebook  16%', 'Teligram 5%', 'Instagram 5%', 'Discord 6%', '4Chan 20%'
+    ],
+
+    datasets: [{
+      label: '# of Votes',
+      data: [23, 6, 20, 40, 23, 6, 5, 5, 16, 20],
+
+      backgroundColor: [
+        'rgb(1,112,185)',
+        'rgb(255,174,0)',
+        'rgb(81,96,172)',
+        'rgb(112,206,231)',
+
+
+      ],
+      borderColor: [
+        'rgb(1,112,185)',
+        'rgb(255,174,0)',
+        'rgb(81,96,172)',
+        'rgb(112,206,231)',
+
+
+      ],
+
+      cutout: '60',
+
+    }]
+  };
+  // config
+  const doughnutConfig = {
+    type: 'doughnut',
+    data: dataDoughnut,
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: 'left',
+          align: 'start',
+          fontSize: '14',
+          labels: {
+            pointStyle: 'circle',
+            usePointStyle: true
+          }
+        }
+      }
+    }
+
+  }
+
+
+
+
+  // data redering
+  const doughnut = new Chart(document.getElementById('doughnut'),
+    doughnutConfig
+  );
+</script>
+<!-- donut chart start -->
+
 </body>
 
 </html>
